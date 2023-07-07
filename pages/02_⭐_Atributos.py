@@ -6,8 +6,6 @@
 import streamlit as st
 import pandas as pd
 import altair as alt
-from googletrans import Translator
-translator = Translator()
 
 # ------------------------------------------------------------------------------
 
@@ -56,7 +54,7 @@ if not df_numericos.empty:
     st.write(pd.DataFrame(df_numericos.describe().round(decimals=2).transpose()))
 
     for col in df.select_dtypes(include=['int16', 'int32', 'int64']):
-      st.write(f"No atributo \"{col}\" ({translator.translate(col.replace('_', ' '), src='en', dest='pt').text}): mínima é de {df[col].min():.0f} e a máxima é de {df[col].max():.0f}.")
+      st.write(f"No atributo \"{col}\": mínima é de {df[col].min():.0f} e a máxima é de {df[col].max():.0f}.")
       st.write(f"\n")
 
       # https://altair-viz.github.io/gallery/simple_histogram.html
@@ -68,7 +66,7 @@ if not df_numericos.empty:
       st.altair_chart(mychart, use_container_width=True)
 
     for col in df.select_dtypes(include=['float16', 'float32', 'float64']):
-      st.write(f"No atributo \"{col}\" ({translator.translate(col.replace('_', ' '), src='en', dest='pt').text}): mínima é de {df[col].min():.0f} e a máxima é de {df[col].max():.0f}, com uma média de {df[col].mean():.2f} e desvio padrão de {df[col].std():.2f}.")
+      st.write(f"No atributo \"{col}\": mínima é de {df[col].min():.0f} e a máxima é de {df[col].max():.0f}, com uma média de {df[col].mean():.2f} e desvio padrão de {df[col].std():.2f}.")
       st.write(f"\n")
 
       # https://altair-viz.github.io/gallery/simple_histogram.html
@@ -125,7 +123,7 @@ if not df_categoricos.empty:
       moda = list(modas.keys())
       freqmoda = list(modas.values())
 
-      st.write(f"O atributo \"{col}\" ({translator.translate(col.replace('_', ' '), src='en', dest='pt').text}) possui {df[col].nunique()} valores únicos. A moda é \"{moda}\" com frequência {freqmoda}.")
+      st.write(f"O atributo \"{col}\" possui {df[col].nunique()} valores únicos. A moda é \"{moda}\" com frequência {freqmoda}.")
       st.write(f"\n")
 
       # https://altair-viz.github.io/gallery/simple_histogram.html

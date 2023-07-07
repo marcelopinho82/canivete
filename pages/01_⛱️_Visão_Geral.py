@@ -5,8 +5,6 @@
 
 import streamlit as st
 import pandas as pd
-from googletrans import Translator
-translator = Translator()
 
 # ------------------------------------------------------------------------------
 
@@ -73,6 +71,5 @@ i=1
 for atributo in df.columns:
   st.write(f"{i}. {atributo.upper()}")
   st.write(f"{atributo.replace('_', ' ')} - ")
-  st.write(f"{translator.translate(atributo.replace('_', ' '), src='en', dest='pt').text} - ")
   st.write(f"\n")
   i=i+1
