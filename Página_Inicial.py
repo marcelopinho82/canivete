@@ -7,6 +7,7 @@ import streamlit as st
 st.set_page_config(layout="wide")
 import pandas as pd
 from PIL import Image
+from sklearn import datasets
 
 # ------------------------------------------------------------------------------
 
@@ -23,8 +24,6 @@ import marcelo as mp
 st.markdown("# Página Inicial 🧰")
 st.title("O Canivete Suiço do Cientista de Dados")
 st.header("Conjunto de Dados")
-
-## Teste 12345
 
 # ------------------------------------------------------------------------------
 # Dados
@@ -60,20 +59,20 @@ if arquivo:
         if extensao == 'xlsx':
             # Salva o DataFrame como CSV
             csv_path = f"{nome_arquivo}_{aba_selecionada}.csv"
-            df.to_csv(csv_path, index=False, encoding='utf-8')
-            st.success(f"Arquivo salvo como {csv_path}")
         else:
             # Salva o DataFrame como CSV
             csv_path = f"{nome_arquivo}.csv"
+
+        if not os.path.exists(csv_path):
             df.to_csv(csv_path, index=False, encoding='utf-8')
             st.success(f"Arquivo salvo como {csv_path}")
+        else:
+            st.warning(f"O arquivo {csv_path} já existe.")
         
     except Exception as e:
         st.error(f"Ocorreu um erro ao processar o arquivo: {e}")
 
 # ------------------------------------------------------------------------------
-
-from sklearn import datasets
 
 # Lista de funções que carregam datasets em sklearn.datasets
 dataset_loaders = [
