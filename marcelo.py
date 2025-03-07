@@ -132,7 +132,6 @@ def set_bg_hack(main_bg):
 
 # https://blog.streamlit.io/auto-generate-a-dataframe-filtering-ui-in-streamlit-with-filter_dataframe/
 
-import streamlit.components.v1 as components
 from pandas.api.types import (
     is_categorical_dtype,
     is_datetime64_any_dtype,
